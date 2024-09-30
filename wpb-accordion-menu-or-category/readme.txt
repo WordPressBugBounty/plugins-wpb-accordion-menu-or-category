@@ -208,6 +208,10 @@ The inclusion of FontAwesome and Themify icon libraries offers a wide range of i
 * GeneratePress
 * Blocksy
 * Hestia
+* Tove
+* Raft
+* Neve FSE
+
 
 ### Tested with the Following Page Builders
 
