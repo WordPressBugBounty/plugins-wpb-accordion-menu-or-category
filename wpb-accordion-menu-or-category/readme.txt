@@ -212,6 +212,7 @@ The inclusion of FontAwesome and Themify icon libraries offers a wide range of i
 * Raft
 * Neve FSE
 
+### Best fit for FSE Themes.
 
 ### Tested with the Following Page Builders
 
