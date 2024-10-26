@@ -5,7 +5,7 @@
 
 		var accordion 		= $(this).data('accordion'),
 			indicator_icon  = $(this).data('indicator_icon'),
-			iconclass  		= $(this).data('iconclass'),
+			iconclass  		  = $(this).data('iconclass'),
 			caretHtml       = '';
 
 		if( iconclass ){
@@ -28,7 +28,7 @@
 				duration: 400,
 				easing: 'swing'
 			}
-      	});
+    });
 
 	});
 
