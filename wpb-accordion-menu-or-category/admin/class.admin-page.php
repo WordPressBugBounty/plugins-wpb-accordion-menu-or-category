@@ -340,8 +340,8 @@ class WPBean_Accordion_Menu_Admin_Page {
 		 */
 		$fields['wpbean_accordion_menu_style_settings'][] = array(
 			'name'              => 'wpb_wmca_accordion_skin',
-			'label'             => esc_html__( 'Choose a Skin', 'wpb-form-popup-pro' ),
-			'desc'              => esc_html__( 'Choose a predetermined designed skin. Default: Drak.', 'wpb-form-popup-pro' ),
+			'label'             => esc_html__( 'Choose a Skin', 'wpb-accordion-menu-or-category' ),
+			'desc'              => esc_html__( 'Choose a predetermined designed skin. Default: Drak.', 'wpb-accordion-menu-or-category' ),
 			'type'              => 'image_select',
 			'size'              => 'large',
 			'default'           => 'dark',

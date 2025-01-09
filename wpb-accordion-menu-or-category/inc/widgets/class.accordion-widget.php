@@ -33,7 +33,7 @@ class WPB_Accordion_Menu_Widget extends WP_Widget {
 	 */
 	public function widget( $args, $instance ) {
 
-		echo $args['before_widget']; // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
+		echo esc_html($args['before_widget']);
 
 		if ( isset( $instance['title'] ) ) {
 			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
@@ -41,7 +41,7 @@ class WPB_Accordion_Menu_Widget extends WP_Widget {
 
 		echo do_shortcode( '[wpb_wmca_accordion_pro id="' . esc_attr( $instance['id'] ) . '"]' );
 
-		echo $args['after_widget']; // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
+		echo esc_html($args['after_widget']);
 	}
 
 	/**

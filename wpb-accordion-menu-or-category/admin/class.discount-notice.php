@@ -60,6 +60,9 @@ class WPBean_Accordion_Menu_Discount_Notice {
 		}
 
 		$user_id = get_current_user_id();
+
+		//delete_user_meta($user_id, 'wpb_wmca_pro_discount_dismissed');
+
 		if ( isset( $_GET['wpb-wmca-pro-discount-admin-notice-dismissed'] ) ) {
 			add_user_meta( $user_id, 'wpb_wmca_pro_discount_dismissed', 'true', true );
 		}
