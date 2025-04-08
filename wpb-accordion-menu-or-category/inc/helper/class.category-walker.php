@@ -26,6 +26,25 @@ class WPB_WCMA_Category_Walker extends Walker_Category {
 	 * @param int     $id                Optional. ID of the current category. Default 0.
 	 */
 	public function start_el( &$output, $category, $depth = 0, $args = array(), $id = 0 ) {
+
+		// Hide out of stock WooCommerce product categories.
+		$tax_hide_out_of_stock = get_post_meta( $args['shortcode_id'], 'wpb_wmca_tax_hide_out_of_stock', true );
+
+		if( 'product_cat' === $args['taxonomy'] && 'on' === $tax_hide_out_of_stock ){
+			// Check in-stock product count for this category.
+			$product_query = wc_get_products( array(
+				'status'       => 'publish',
+				'limit'        => 1, // Just need to know if exists
+				'stock_status' => 'instock',
+				'category'     => array( $category->slug ),
+			) );
+
+			if (empty( $product_query ) && true == $args['hide_empty']) {
+				// No in-stock product → Skip this category.
+				return;
+			}
+		}
+
 		/** This filter is documented in wp-includes/category-template.php */
 		$cat_name = apply_filters(
 			'list_cats',

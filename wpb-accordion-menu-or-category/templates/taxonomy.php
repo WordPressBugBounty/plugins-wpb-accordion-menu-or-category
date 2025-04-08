@@ -36,8 +36,10 @@ $tax_hide_empty = get_post_meta( $args['id'], 'wpb_wmca_tax_hide_empty', true );
 			'current_category' => 0,
 			'pad_counts'       => 0,
 			'taxonomy'         => $the_taxonomy,
+			'shortcode_id'     => esc_attr($args['id']),
 			'walker'           => new WPB_WCMA_Category_Walker(),
 		);
+
 		wp_list_categories( $args );
 		?>
 </ul>

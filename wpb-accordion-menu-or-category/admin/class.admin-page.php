@@ -276,6 +276,17 @@ class WPBean_Accordion_Menu_Admin_Page {
 			'condition'         => array( 'wpb_wmca_data_socure', 'taxonomy' ),
 		);
 
+		$fields['wpbean_accordion_menu_data_settings'][] = array(
+			'name'              => 'wpb_wmca_tax_hide_out_of_stock',
+			'checkbox_label'    => esc_html__( 'Yes Please!', 'wpb-accordion-menu-or-category' ),
+			'label'             => esc_html__( 'Hide Out of Stock', 'wpb-accordion-menu-or-category' ),
+			'desc'              => esc_html__( 'Toggles the display of categories with out of stock products (Only for WooCommerce categories).', 'wpb-accordion-menu-or-category' ),
+			'type'              => 'checkbox',
+			'default'           => 'off',
+			'sanitize_callback' => 'sanitize_text_field',
+			'condition'         => array( 'wpb_wmca_data_socure', 'taxonomy' ),
+		);
+
 		// Data options for posts.
 		$fields['wpbean_accordion_menu_data_settings'][] = array(
 			'name'              => 'wpb_wmca_hierarchical_post_type',

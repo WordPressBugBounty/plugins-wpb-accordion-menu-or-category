@@ -2,8 +2,8 @@
 Contributors: wpbean, imranwpb
 Tags: accordion menu, vertical menu, menu, woocommerce menu, sidebar menu
 Requires at least: 5.0
-Tested up to: 6.7.1
-Stable tag: 1.7.4
+Tested up to: 6.8
+Stable tag: 1.7.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,10 +19,7 @@ This accordion menu plugin is a game-changer for WordPress and WooCommerce sites
 
 == Quick Links ==
 
-👉 Get a WPB Accordion Menu Pro: [Explore all Features of WPB Accordion Menu](https://wpbean.com/downloads/wpb-accordion-menu-category-pro/?utm_content=WPB+Accordion+Menu+Pro&utm_campaign=repository&utm_medium=desc-link&utm_source=WordPress)
-👉 Try Demo: [Try WPB Accordion Menu Demo](https://accordion.wpbean.com/)
-👉 Support: [Support](https://wpbean.com/support/)
-👉 Documentation: [Documentation](https://docs.wpbean.com/docs/wpb-accordion-menu-or-category-pro-new-version/installing/)
+[__Live Demo__](https://accordion.wpbean.com/) | [__Documentation__](https://docs.wpbean.com/docs/wpb-accordion-menu-or-category-pro-new-version/installing/) | [__Upgrade to Pro!__](https://wpbean.com/downloads/wpb-accordion-menu-category-pro/?utm_content=WPB+Accordion+Menu+Pro&utm_campaign=repository&utm_medium=desc-link&utm_source=WordPress)
 
 ### Pro Version Video Documentation:
 
@@ -408,5 +405,8 @@ Our accordion menu can have as many levels as you'd like.
 
 = version 1.7.4 =
 * Widget HTML esc issue fixed.
+
+= version 1.7.6 =
+* Added new option for excluding out of stock WC product categories.
 
 == Upgrade notice ==
