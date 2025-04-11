@@ -1,10 +1,11 @@
 <?php
+
 namespace WpbWMCAFree\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
@@ -15,7 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
-class Wpb_Accordion_Categories extends Widget_Base {
+class Wpb_Accordion_Categories extends Widget_Base
+{
 
 	/**
 	 * Retrieve the widget name.
@@ -26,7 +28,8 @@ class Wpb_Accordion_Categories extends Widget_Base {
 	 *
 	 * @return string Widget name.
 	 */
-	public function get_name() {
+	public function get_name()
+	{
 		return 'wpb-accordion-categories';
 	}
 
@@ -39,8 +42,9 @@ class Wpb_Accordion_Categories extends Widget_Base {
 	 *
 	 * @return string Widget title.
 	 */
-	public function get_title() {
-		return esc_html__( 'WPB Accordion Categories [Deprecated]', 'wpb-accordion-menu-or-category' );
+	public function get_title()
+	{
+		return esc_html__('WPB Accordion Categories [Deprecated]', 'wpb-accordion-menu-or-category');
 	}
 
 	/**
@@ -52,7 +56,8 @@ class Wpb_Accordion_Categories extends Widget_Base {
 	 *
 	 * @return string Widget icon.
 	 */
-	public function get_icon() {
+	public function get_icon()
+	{
 		return 'eicon-accordion';
 	}
 
@@ -70,8 +75,9 @@ class Wpb_Accordion_Categories extends Widget_Base {
 	 *
 	 * @return array Widget categories.
 	 */
-	public function get_categories() {
-		return array( 'general' );
+	public function get_categories()
+	{
+		return array('general');
 	}
 
 	/**
@@ -85,16 +91,18 @@ class Wpb_Accordion_Categories extends Widget_Base {
 	 *
 	 * @return array Widget scripts dependencies.
 	 */
-	public function get_script_depends() {
-		return array( 'wpb_wmca_jquery_cookie', 'wpb_wmca_accordion_script', 'wpb_wmca_accordion_init' );
+	public function get_script_depends()
+	{
+		return array('wpb_wmca_jquery_cookie', 'wpb_wmca_accordion_script', 'wpb_wmca_accordion_init');
 	}
 
 	/**
 	 * Get post type taxonomies
 	 */
-	private function get_all_taxonies() {
+	private function get_all_taxonies()
+	{
 
-		$options    = array( 'category' => 'category' );
+		$options    = array('category' => 'category');
 		$taxonomies = get_taxonomies(
 			array(
 				'public'   => true,
@@ -102,10 +110,10 @@ class Wpb_Accordion_Categories extends Widget_Base {
 			)
 		);
 
-		if ( ! empty( $taxonomies ) ) {
+		if (! empty($taxonomies)) {
 
-			foreach ( $taxonomies as $taxonomy ) {
-				$options[ $taxonomy ] = $taxonomy;
+			foreach ($taxonomies as $taxonomy) {
+				$options[$taxonomy] = $taxonomy;
 			}
 		}
 
@@ -121,18 +129,19 @@ class Wpb_Accordion_Categories extends Widget_Base {
 	 *
 	 * @access protected
 	 */
-	protected function register_controls() {
+	protected function register_controls()
+	{
 		$this->start_controls_section(
 			'section_content',
 			array(
-				'label' => esc_html__( 'Content', 'wpb-accordion-menu-or-category' ),
+				'label' => esc_html__('Content', 'wpb-accordion-menu-or-category'),
 			)
 		);
 
 		$this->add_control(
 			'title',
 			array(
-				'label' => esc_html__( 'Title', 'wpb-accordion-menu-or-category' ),
+				'label' => esc_html__('Title', 'wpb-accordion-menu-or-category'),
 				'type'  => Controls_Manager::TEXT,
 			)
 		);
@@ -140,7 +149,7 @@ class Wpb_Accordion_Categories extends Widget_Base {
 		$this->add_control(
 			'taxonomy',
 			array(
-				'label'   => esc_html__( 'Taxonomy', 'wpb-accordion-menu-or-category' ),
+				'label'   => esc_html__('Taxonomy', 'wpb-accordion-menu-or-category'),
 				'type'    => Controls_Manager::SELECT,
 				'options' => $this->get_all_taxonies(),
 				'default' => 'category',
@@ -150,7 +159,7 @@ class Wpb_Accordion_Categories extends Widget_Base {
 		$this->add_control(
 			'orderby',
 			array(
-				'label'   => esc_html__( 'Order By', 'wpb-accordion-menu-or-category' ),
+				'label'   => esc_html__('Order By', 'wpb-accordion-menu-or-category'),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
 					'ID'         => 'ID',
@@ -167,7 +176,7 @@ class Wpb_Accordion_Categories extends Widget_Base {
 		$this->add_control(
 			'order',
 			array(
-				'label'   => esc_html__( 'Order', 'wpb-accordion-menu-or-category' ),
+				'label'   => esc_html__('Order', 'wpb-accordion-menu-or-category'),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
 					'ASC'  => 'ASC',
@@ -180,10 +189,10 @@ class Wpb_Accordion_Categories extends Widget_Base {
 		$this->add_control(
 			'show_count',
 			array(
-				'label'        => esc_html__( 'Show Post Count', 'wpb-accordion-menu-or-category' ),
+				'label'        => esc_html__('Show Post Count', 'wpb-accordion-menu-or-category'),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'Show', 'wpb-accordion-menu-or-category' ),
-				'label_off'    => esc_html__( 'Hide', 'wpb-accordion-menu-or-category' ),
+				'label_on'     => esc_html__('Show', 'wpb-accordion-menu-or-category'),
+				'label_off'    => esc_html__('Hide', 'wpb-accordion-menu-or-category'),
 				'return_value' => 'yes',
 				'default'      => 'no',
 			)
@@ -192,10 +201,10 @@ class Wpb_Accordion_Categories extends Widget_Base {
 		$this->add_control(
 			'hide_empty',
 			array(
-				'label'        => esc_html__( 'Hide Empty Categories', 'wpb-accordion-menu-or-category' ),
+				'label'        => esc_html__('Hide Empty Categories', 'wpb-accordion-menu-or-category'),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'Show', 'wpb-accordion-menu-or-category' ),
-				'label_off'    => esc_html__( 'Hide', 'wpb-accordion-menu-or-category' ),
+				'label_on'     => esc_html__('Show', 'wpb-accordion-menu-or-category'),
+				'label_off'    => esc_html__('Hide', 'wpb-accordion-menu-or-category'),
 				'return_value' => 'yes',
 				'default'      => 'no',
 			)
@@ -204,10 +213,10 @@ class Wpb_Accordion_Categories extends Widget_Base {
 		$this->add_control(
 			'accordion',
 			array(
-				'label'        => esc_html__( 'Close Previously Opened Accordion Item', 'wpb-accordion-menu-or-category' ),
+				'label'        => esc_html__('Close Previously Opened Accordion Item', 'wpb-accordion-menu-or-category'),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'Yes', 'wpb-accordion-menu-or-category' ),
-				'label_off'    => esc_html__( 'No', 'wpb-accordion-menu-or-category' ),
+				'label_on'     => esc_html__('Yes', 'wpb-accordion-menu-or-category'),
+				'label_off'    => esc_html__('No', 'wpb-accordion-menu-or-category'),
 				'return_value' => 'yes',
 				'default'      => 'yes',
 			)
@@ -225,21 +234,22 @@ class Wpb_Accordion_Categories extends Widget_Base {
 	 *
 	 * @access protected
 	 */
-	protected function render() {
+	protected function render()
+	{
 		$settings = $this->get_settings_for_display();
 
-		?>
+?>
 
-			<div class="wpb-wmca-elementor-widget">
-				<?php
-				if ( $settings['title'] ) {
-					printf( '<h3>%s</h3>', esc_html( $settings['title'] ) );
-				}
+		<div class="wpb-wmca-elementor-widget">
+			<?php
+			if ($settings['title']) {
+				printf('<h3>%s</h3>', esc_html($settings['title']));
+			}
 
-					echo do_shortcode( '[wpb_category_accordion taxonomy="' . $settings['taxonomy'] . '" orderby="' . $settings['orderby'] . '" order="' . $settings['order'] . '" show_count="' . $settings['show_count'] . '" hide_empty="' . $settings['hide_empty'] . '" accordion="' . $settings['accordion'] . '"]' );
-				?>
-			</div>
+			echo do_shortcode('[wpb_category_accordion taxonomy="' . $settings['taxonomy'] . '" orderby="' . $settings['orderby'] . '" order="' . $settings['order'] . '" show_count="' . $settings['show_count'] . '" hide_empty="' . $settings['hide_empty'] . '" accordion="' . $settings['accordion'] . '"]');
+			?>
+		</div>
 
-		<?php
+<?php
 	}
 }

@@ -1,87 +1,82 @@
-(function($) {
-  "use strict";
+(function ($) {
+    "use strict";
 
-  	$(".wpb_category_n_menu_accordion").each(function(){
+    /**
+     * Navgoco Init Function
+     */
+    function wpbInitNavgoco($wrapper) {
+        $wrapper.each(function () {
+            var $this = $(this);
 
-		var accordion 		= $(this).data('accordion'),
-			indicator_icon  = $(this).data('indicator_icon'),
-			iconclass  		  = $(this).data('iconclass'),
-			caretHtml       = '';
+            // Prevent Double Init
+            if ($this.hasClass("navgoco-initialized")) {
+                return;
+            }
 
-		if( iconclass ){
-			caretHtml = '<i class="'+iconclass+'"></i>';
-		}else{
-			caretHtml = indicator_icon;
-		}
+            var accordion = $this.data("accordion"),
+                indicator_icon = $this.data("indicator_icon"),
+                iconclass = $this.data("iconclass"),
+                caretHtml = iconclass
+                    ? '<i class="' + iconclass + '"></i>'
+                    : indicator_icon;
 
-		$(this).find('.wpb_category_n_menu_accordion_list').navgoco({
-			caretHtml: caretHtml,
-			accordion: accordion,
-			openClass: 'wpb-submenu-indicator-minus',
-			save: true,
-			cookie: {
-				name: 'navgoco',
-				expires: false,
-				path: '/'
-			},
-			slide: {
-				duration: 400,
-				easing: 'swing'
-			}
+            $this.find(".wpb_category_n_menu_accordion_list").navgoco({
+                caretHtml: caretHtml,
+                accordion: accordion,
+                openClass: "wpb-submenu-indicator-minus",
+                save: true,
+                cookie: {
+                    name: "navgoco",
+                    expires: false,
+                    path: "/",
+                },
+                slide: {
+                    duration: 400,
+                    easing: "swing",
+                },
+            });
+
+            $this.addClass("navgoco-initialized");
+        });
+    }
+
+    /**
+     * Global Init for Non-Elementor Popup Menus
+     */
+    wpbInitNavgoco(
+        $(".wpb_category_n_menu_accordion").filter(function () {
+            return (
+                $(this).closest(".wpb-wamc-elementor-widget-show-in-popup")
+                    .length === 0
+            );
+        })
+    );
+
+    /**
+     * Elementor Specific Init
+     */
+    var WPB_Accordion_Menu_Elementor = function ($scope, $) {
+        var $wrapper = $scope.find(".wpb_category_n_menu_accordion");
+
+        wpbInitNavgoco($wrapper);
+
+        $(".wpb-submenu-indicator").click(function (e) {
+            e.preventDefault();
+        });
+    };
+
+    $(window).on("elementor/frontend/init", function () {
+        elementorFrontend.hooks.addAction(
+            "frontend/element_ready/wpb-accordion-categories.default",
+            WPB_Accordion_Menu_Elementor
+        );
+        elementorFrontend.hooks.addAction(
+            "frontend/element_ready/wpb-accordion-menu.default",
+            WPB_Accordion_Menu_Elementor
+        );
+        elementorFrontend.hooks.addAction(
+            "frontend/element_ready/wpb-accordion-menu-or-category-pro.default",
+            WPB_Accordion_Menu_Elementor
+        );
     });
-
-	});
-
-
-
-  	/**
-  	 * Accordion init on Elementor Editor
- 	 * @param $scope The Widget wrapper element as a jQuery element
-	 * @param $ The jQuery alias
-	 */ 
-
-	var WPB_Accordion_Menu_Elementor = function( $scope, $test ) {
-
-		var $_accordion_wrapper = $scope.find(".wpb_category_n_menu_accordion");
-
-		$_accordion_wrapper.each(function(){
-
-			var accordion 	= $(this).data('accordion'),
-			indicator_icon  = $(this).data('indicator_icon'),
-			iconclass  		= $(this).data('iconclass'),
-			caretHtml       = '';
-
-			if( iconclass ){
-				caretHtml = '<i class="'+iconclass+'"></i>';
-			}else{
-				caretHtml = indicator_icon;
-			}
-
-			$(this).find('.wpb_category_n_menu_accordion_list').navgoco({
-				caretHtml: caretHtml,
-				accordion: accordion,
-				openClass: 'wpb-submenu-indicator-minus',
-				save: true,
-				cookie: {
-					name: 'navgoco',
-					expires: false,
-					path: '/'
-				},
-				slide: {
-					duration: 400,
-					easing: 'swing'
-				}
-	      	});
-
-		});
-
-	};
-
-	// Run this code under Elementor.
-	$( window ).on( 'elementor/frontend/init', function() {
-		elementorFrontend.hooks.addAction( 'frontend/element_ready/wpb-accordion-categories.default', WPB_Accordion_Menu_Elementor );
-		elementorFrontend.hooks.addAction( 'frontend/element_ready/wpb-accordion-menu.default', WPB_Accordion_Menu_Elementor );
-		elementorFrontend.hooks.addAction( 'frontend/element_ready/wpb-accordion-menu-or-category-pro.default', WPB_Accordion_Menu_Elementor );
-	});
-
-}(jQuery)); 
+})(jQuery);

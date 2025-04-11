@@ -1,10 +1,11 @@
 <?php
+
 namespace WpbWMCAFree\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
@@ -15,7 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
-class Wpb_Accordion_Menu extends Widget_Base {
+class Wpb_Accordion_Menu extends Widget_Base
+{
 
 	/**
 	 * Retrieve the widget name.
@@ -26,7 +28,8 @@ class Wpb_Accordion_Menu extends Widget_Base {
 	 *
 	 * @return string Widget name.
 	 */
-	public function get_name() {
+	public function get_name()
+	{
 		return 'wpb-accordion-menu';
 	}
 
@@ -39,8 +42,9 @@ class Wpb_Accordion_Menu extends Widget_Base {
 	 *
 	 * @return string Widget title.
 	 */
-	public function get_title() {
-		return esc_html__( 'WPB Accordion Menu [Deprecated]', 'wpb-accordion-menu-or-category' );
+	public function get_title()
+	{
+		return esc_html__('WPB Accordion Menu [Deprecated]', 'wpb-accordion-menu-or-category');
 	}
 
 	/**
@@ -52,7 +56,8 @@ class Wpb_Accordion_Menu extends Widget_Base {
 	 *
 	 * @return string Widget icon.
 	 */
-	public function get_icon() {
+	public function get_icon()
+	{
 		return 'eicon-accordion';
 	}
 
@@ -70,8 +75,9 @@ class Wpb_Accordion_Menu extends Widget_Base {
 	 *
 	 * @return array Widget categories.
 	 */
-	public function get_categories() {
-		return array( 'general' );
+	public function get_categories()
+	{
+		return array('general');
 	}
 
 	/**
@@ -85,22 +91,24 @@ class Wpb_Accordion_Menu extends Widget_Base {
 	 *
 	 * @return array Widget scripts dependencies.
 	 */
-	public function get_script_depends() {
-		return array( 'wpb_wmca_jquery_cookie', 'wpb_wmca_accordion_script', 'wpb_wmca_accordion_init' );
+	public function get_script_depends()
+	{
+		return array('wpb_wmca_jquery_cookie', 'wpb_wmca_accordion_script', 'wpb_wmca_accordion_init');
 	}
 
 	/**
 	 * Get post type taxonomies
 	 */
-	private function get_all_menus() {
+	private function get_all_menus()
+	{
 
-		$options = array( '' => 'Select a menu' );
-		$menus   = get_terms( 'nav_menu' );
+		$options = array('' => 'Select a menu');
+		$menus   = get_terms('nav_menu');
 
-		if ( ! empty( $menus ) ) {
+		if (! empty($menus)) {
 
-			foreach ( $menus as $menu ) {
-				$options[ $menu->slug ] = $menu->slug;
+			foreach ($menus as $menu) {
+				$options[$menu->slug] = $menu->slug;
 			}
 		}
 
@@ -116,18 +124,19 @@ class Wpb_Accordion_Menu extends Widget_Base {
 	 *
 	 * @access protected
 	 */
-	protected function register_controls() {
+	protected function register_controls()
+	{
 		$this->start_controls_section(
 			'section_content',
 			array(
-				'label' => esc_html__( 'Content', 'wpb-accordion-menu-or-category' ),
+				'label' => esc_html__('Content', 'wpb-accordion-menu-or-category'),
 			)
 		);
 
 		$this->add_control(
 			'title',
 			array(
-				'label' => esc_html__( 'Title', 'wpb-accordion-menu-or-category' ),
+				'label' => esc_html__('Title', 'wpb-accordion-menu-or-category'),
 				'type'  => Controls_Manager::TEXT,
 			)
 		);
@@ -135,7 +144,7 @@ class Wpb_Accordion_Menu extends Widget_Base {
 		$this->add_control(
 			'menu',
 			array(
-				'label'   => esc_html__( 'Select a menu', 'wpb-accordion-menu-or-category' ),
+				'label'   => esc_html__('Select a menu', 'wpb-accordion-menu-or-category'),
 				'type'    => Controls_Manager::SELECT,
 				'options' => $this->get_all_menus(),
 				'default' => '',
@@ -145,10 +154,10 @@ class Wpb_Accordion_Menu extends Widget_Base {
 		$this->add_control(
 			'accordion',
 			array(
-				'label'        => esc_html__( 'Close Previously Opened Accordion Item', 'wpb-accordion-menu-or-category' ),
+				'label'        => esc_html__('Close Previously Opened Accordion Item', 'wpb-accordion-menu-or-category'),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'Yes', 'wpb-accordion-menu-or-category' ),
-				'label_off'    => esc_html__( 'No', 'wpb-accordion-menu-or-category' ),
+				'label_on'     => esc_html__('Yes', 'wpb-accordion-menu-or-category'),
+				'label_off'    => esc_html__('No', 'wpb-accordion-menu-or-category'),
 				'return_value' => 'yes',
 				'default'      => 'yes',
 			)
@@ -166,21 +175,22 @@ class Wpb_Accordion_Menu extends Widget_Base {
 	 *
 	 * @access protected
 	 */
-	protected function render() {
+	protected function render()
+	{
 		$settings = $this->get_settings_for_display();
 
-		?>
+?>
 
-			<div class="wpb-wmca-elementor-widget">
-				<?php
-				if ( $settings['title'] ) {
-					printf( '<h3>%s</h3>', esc_html( $settings['title'] ) );
-				}
+		<div class="wpb-wmca-elementor-widget">
+			<?php
+			if ($settings['title']) {
+				printf('<h3>%s</h3>', esc_html($settings['title']));
+			}
 
-					echo do_shortcode( '[wpb_menu_accordion menu="' . $settings['menu'] . '" accordion="' . $settings['accordion'] . '"]' );
-				?>
-			</div>
+			echo do_shortcode('[wpb_menu_accordion menu="' . $settings['menu'] . '" accordion="' . $settings['accordion'] . '"]');
+			?>
+		</div>
 
-		<?php
+<?php
 	}
 }
