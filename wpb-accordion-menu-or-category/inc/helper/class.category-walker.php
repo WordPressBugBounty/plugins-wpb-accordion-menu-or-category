@@ -1,13 +1,14 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
 /**
  * WPB Category Walker Class
  */
-class WPB_WCMA_Category_Walker extends Walker_Category {
+class WPB_WCMA_Category_Walker extends Walker_Category
+{
 
 	/**
 	 * Starts the element output.
@@ -25,75 +26,57 @@ class WPB_WCMA_Category_Walker extends Walker_Category {
 	 *                                   Default empty array.
 	 * @param int     $id                Optional. ID of the current category. Default 0.
 	 */
-	public function start_el( &$output, $category, $depth = 0, $args = array(), $id = 0 ) {
-
-		// Hide out of stock WooCommerce product categories.
-		$tax_hide_out_of_stock = get_post_meta( $args['shortcode_id'], 'wpb_wmca_tax_hide_out_of_stock', true );
-
-		if( 'product_cat' === $args['taxonomy'] && 'on' === $tax_hide_out_of_stock ){
-			// Check in-stock product count for this category.
-			$product_query = wc_get_products( array(
-				'status'       => 'publish',
-				'limit'        => 1, // Just need to know if exists
-				'stock_status' => 'instock',
-				'category'     => array( $category->slug ),
-			) );
-
-			if (empty( $product_query ) && true == $args['hide_empty']) {
-				// No in-stock product → Skip this category.
-				return;
-			}
-		}
-
+	public function start_el(&$output, $category, $depth = 0, $args = array(), $id = 0)
+	{
 		/** This filter is documented in wp-includes/category-template.php */
 		$cat_name = apply_filters(
 			'list_cats',
-			esc_attr( $category->name ),
+			esc_attr($category->name),
 			$category
 		);
 
 		// Don't generate an element if the category name is empty.
-		if ( ! $cat_name ) {
+		if (! $cat_name) {
 			return;
 		}
 
 		$wpb_wmca_cat_count = '';
 
-		if ( ! empty( $args['show_count'] ) ) {
-			$wpb_wmca_cat_count = '<span class="wpb-wmca-cat-count">' . esc_html( number_format_i18n( $category->count ) ) . '</span>';
+		if (! empty($args['show_count'])) {
+			$wpb_wmca_cat_count = '<span class="wpb-wmca-cat-count">' . esc_html(number_format_i18n($category->count)) . '</span>';
 		}
 
-		$link = '<a href="' . esc_url( get_term_link( $category ) ) . '" ';
-		if ( $args['use_desc_for_title'] && ! empty( $category->description ) ) {
-			$link .= 'title="' . esc_attr( wp_strip_all_tags( apply_filters( 'category_description', $category->description, $category ) ) ) . '"';
+		$link = '<a href="' . esc_url(get_term_link($category)) . '" ';
+		if ($args['use_desc_for_title'] && ! empty($category->description)) {
+			$link .= 'title="' . esc_attr(wp_strip_all_tags(apply_filters('category_description', $category->description, $category))) . '"';
 		}
 
 		$link .= '>';
 		$link .= $cat_name . $wpb_wmca_cat_count . '</a>';
 
-		if ( 'list' === $args['style'] ) {
+		if ('list' === $args['style']) {
 			$output     .= "\t<li";
 			$css_classes = array(
 				'cat-item',
 				'cat-item-' . $category->term_id,
 			);
 
-			$termchildren = get_term_children( $category->term_id, $category->taxonomy );
+			$termchildren = get_term_children($category->term_id, $category->taxonomy);
 
-			if ( count( $termchildren ) > 0 ) {
+			if (count($termchildren) > 0) {
 				$css_classes[] = 'cat-item-have-child';
 			}
 
-			if ( ! empty( $args['current_category'] ) ) {
-				$_current_category = get_term( $args['current_category'], $category->taxonomy );
-				if ( $category->term_id === $args['current_category'] ) {
+			if (! empty($args['current_category'])) {
+				$_current_category = get_term($args['current_category'], $category->taxonomy);
+				if ($category->term_id === $args['current_category']) {
 					$css_classes[] = 'current-cat';
-				} elseif ( $category->term_id === $_current_category->parent ) {
+				} elseif ($category->term_id === $_current_category->parent) {
 					$css_classes[] = 'wpb-wmca-current-cat-parent';
 				}
 			}
 
-			$css_classes = implode( ' ', apply_filters( 'category_css_class', $css_classes, $category, $depth, $args ) );
+			$css_classes = implode(' ', apply_filters('category_css_class', $css_classes, $category, $depth, $args));
 
 			$output .= ' class="' . $css_classes . '"';
 			$output .= ">$link\n";
