@@ -3,7 +3,7 @@ Contributors: wpbean, imranwpb
 Tags: accordion menu, vertical menu, menu, woocommerce menu, sidebar menu
 Requires at least: 5.0
 Tested up to: 6.8
-Stable tag: 1.7.8
+Stable tag: 1.7.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -414,5 +414,8 @@ Our accordion menu can have as many levels as you'd like.
 
 = version 1.7.8 =
 * Fixed bug for excluding out of stock WC product categories.
+
+= version 1.7.9 =
+* Fixed textdomain triggered too early issue.
 
 == Upgrade notice ==
