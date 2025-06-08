@@ -395,9 +395,49 @@ class WPBean_Accordion_Menu_Admin_Page
 			apply_filters('wpbean_accordion_menu_admin_page_position', 30),
 		);
 
+		// Add upgrade to pro submenu page.
+		add_submenu_page(
+			'wpb_wmca_shortcodes-items',
+			esc_html('Upgrade to Pro'),
+			esc_html('Upgrade to Pro'),
+			apply_filters('shortcodes_list_page_capability', 'manage_options'),
+			'wpb_wmca_upgrade-to-pro',
+			array($this, 'upgrade_to_pro'),
+			apply_filters('wpbean_accordion_menu_admin_page_position', 30),
+		);
+
+		// Add upgrade to pro submenu page.
+		add_submenu_page(
+			'wpb_wmca_shortcodes-items',
+			esc_html('Get Help'),
+			esc_html('Get Help'),
+			apply_filters('shortcodes_list_page_capability', 'manage_options'),
+			'wpb_wmca_get_help',
+			array($this, 'get_help'),
+			apply_filters('wpbean_accordion_menu_admin_page_position', 30),
+		);
+
 		// REMOVE THE SUBMENU CREATED BY add_menu_page.
 		global $submenu;
 		unset($submenu['wpb_wmca_shortcodes-items'][0]);
+	}
+
+	/**
+	 * Upgrade to Pro page.
+	 */
+	public function upgrade_to_pro()
+	{
+		wp_redirect('https://wpbean.com/downloads/wpb-accordion-menu-category-pro/');
+		exit;
+	}
+
+	/**
+	 * Get help page.
+	 */
+	public function get_help()
+	{
+		wp_redirect('https://wpbean.com/support/');
+		exit;
 	}
 
 	/**
