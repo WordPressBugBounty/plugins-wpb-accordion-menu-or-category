@@ -79,4 +79,59 @@
             WPB_Accordion_Menu_Elementor
         );
     });
+
+    /**
+     * Keyboard Accessibility
+     */
+
+    $('document').ready(function(){
+        // Adding the focus class to the parest li
+        $( '.wpb_wmca_keyboard_accessibility_yes a' ).on( 'focus', function(){
+            $( '.wpb_wmca_keyboard_accessibility_yes li' ).removeClass( 'wpb-wmca-focus' );
+            $(this).closest( 'li' ).addClass( 'wpb-wmca-focus' );
+        } );
+
+        $(window).click(function() {
+            //remove the focus is click outside
+            $( '.wpb_wmca_keyboard_accessibility_yes li' ).removeClass( 'wpb-wmca-focus' );
+            $( '.wpb_wmca_keyboard_accessibility_yes' ).removeClass( 'wpb_wmca_link_tabbed' );
+        });
+
+        // Opening and closing the accordion on keyboard enter
+        $('.wpb_wmca_keyboard_accessibility_yes').each(function(index){
+
+            const wrapper = $(this);
+            const link    = $(this).find('.cat-item-have-child > a, .menu-item-has-children > a');
+
+            $('.wpb_wmca_keyboard_accessibility_yes').keyup(function (e) {
+                wrapper.removeClass('wpb_wmca_link_tabbed');
+                if ( link.is(":focus") ) {
+                    wrapper.addClass('wpb_wmca_link_tabbed');
+                }else{
+                    wrapper.removeClass('wpb_wmca_link_tabbed');
+                }
+            });
+            
+            link.on( 'click', function( e ){
+                
+                var link       = $(this),
+                    closest_li = link.closest( 'li' ),
+                    child_ul   = closest_li.find('ul').first(),
+                    a_href     = link.attr('href'),
+                    wrapper     = link.closest('.wpb_wmca_keyboard_accessibility_yes');
+
+                    if ( a_href.indexOf('#') === -1 && wrapper.hasClass('wpb_wmca_link_tabbed') && closest_li.hasClass('wpb-wmca-focus') ) {
+                        e.preventDefault();
+
+                        if( child_ul.is(':hidden') ){
+                            child_ul.slideDown();
+                            closest_li.addClass('wpb-submenu-indicator-minus');
+                        }else{
+                            child_ul.slideUp();
+                            closest_li.removeClass('wpb-submenu-indicator-minus');
+                        }
+                    }   
+            });
+        });
+    });
 })(jQuery);

@@ -6,12 +6,23 @@ if (! defined('ABSPATH')) {
 class WpBean_AccordionMenu_AvailableHire
 {
 	/**
+	 * Holds the instance of the class.
+	 *
+	 * @var WpBean_AccordionMenu_AvailableHire
+	 */
+	private static $initialized = false;
+	
+	/**
 	 * Class Constructor
 	 */
 	public function __construct()
 	{
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
+		if ( self::$initialized ) {
+            return;
+        }
+        self::$initialized = true;
 
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 		add_action( 'admin_notices', array( $this, 'available_hire_admin_notice' ) );
 		add_action( 'admin_init', array( $this, 'available_hire_admin_notice_dismissed' ) );
 	}

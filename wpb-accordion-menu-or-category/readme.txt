@@ -1,9 +1,9 @@
-=== WPB Accordion Menu - Responsive Collapse Vertical Sidebar Menu - WooCommerce Category Accordion ===
+=== WPB Accordion Menu - Collapse Vertical Sidebar Menu - WooCommerce Category Accordion ===
 Contributors: wpbean, imranwpb
 Tags: accordion menu, vertical menu, menu, woocommerce menu, sidebar menu
 Requires at least: 5.0
-Tested up to: 6.8.1
-Stable tag: 1.8
+Tested up to: 6.8.2
+Stable tag: 1.8.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -134,6 +134,9 @@ The plugin features a powerful accordion builder for creating custom menus. This
 
 * <strong>Offers two distinct skins for different styles</strong>
 Choose from two distinct skins of WordPress accordion menu to match your site’s aesthetic. This allows you for greater customization and visual appeal.
+
+* <strong>Enhanced Keyboard Accessibility</strong>
+Easily navigate the accordion menu using Tab and Arrow keys, ensuring a smoother and more accessible experience for all users, including those relying on keyboards.
 
 * <strong>A Gutenberg block is included</strong>
 Easily add accordion menus and navigation menus using the Gutenberg block by WPB Accordion Menu. This simplifies the process of integrating accordions into your content.
@@ -420,5 +423,11 @@ Our accordion menu can have as many levels as you'd like.
 
 = version 1.8 =
 * Added available for hire notice.
+
+= version 1.8.1 =
+* Added Keyboard Accessibility feature.
+
+= version 1.8.2 =
+* Fixed some spelling issue.
 
 == Upgrade notice ==

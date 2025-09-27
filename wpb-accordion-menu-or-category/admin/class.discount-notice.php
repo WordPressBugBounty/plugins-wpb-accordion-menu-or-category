@@ -31,7 +31,7 @@ class WPBean_Accordion_Menu_Discount_Notice {
 				'https://wpbean.com/downloads/wpb-accordion-menu-category-pro/?utm_content=WPB+Accordion+Menu+Pro&utm_campaign=adminlink&utm_medium=discount-notie&utm_source=FreeVersion',
 				esc_html__( 'WPB Accordion Menu or Category', 'wpb-accordion-menu-or-category' ),
 				esc_html__( 'Use discount code - ', 'wpb-accordion-menu-or-category' ),
-				'10PERCENTOFF',
+				'NewCustomer',
 				esc_url(
 					add_query_arg(
 						array(

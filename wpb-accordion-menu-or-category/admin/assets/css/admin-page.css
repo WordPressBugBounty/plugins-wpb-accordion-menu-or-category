@@ -565,7 +565,7 @@ input[type=checkbox]:focus, input[type=color]:focus, input[type=date]:focus, inp
     gap: 20px;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 .wpbean-sb-section-header-left,
 .wpbean-sb-section-header-right {
@@ -583,7 +583,7 @@ input[type=checkbox]:focus, input[type=color]:focus, input[type=date]:focus, inp
     color: var(--wpb-sb-navy-blue);
 }
 .wpb-sb-section-header h3 svg {
-    width: 20px;
+    height: 40px;
     padding: 10px;
     border-radius: var(--wpb-sb-border-radius);
     fill: #fff;
@@ -717,11 +717,12 @@ input[type=checkbox]:focus, input[type=color]:focus, input[type=date]:focus, inp
     font-size: 20px;
     font-weight: 600;
     margin-top: 0;
+    margin-bottom: 10px;
     color: var(--wpb-sb-dark-blue);
 }
 .wpb-sb-info-items p {
-    color: rgba(0, 0, 0, 0.5);
-    margin-bottom: 20px;
+    color: #555;
+    margin-bottom: 10px;
 }
 
 /* alertify */

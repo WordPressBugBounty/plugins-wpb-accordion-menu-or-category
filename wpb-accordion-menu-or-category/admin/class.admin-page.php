@@ -171,7 +171,7 @@ class WPBean_Accordion_Menu_Admin_Page
 		 */
 		$fields['wpbean_accordion_menu_data_settings'][] = array(
 			'name'              => 'wpb_wmca_data_socure',
-			'label'             => esc_html__('Data Socure', 'wpb-accordion-menu-or-category'),
+			'label'             => esc_html__('Data Source', 'wpb-accordion-menu-or-category'),
 			'desc'              => esc_html__('Choose the accordion type that you want.', 'wpb-accordion-menu-or-category'),
 			'type'              => 'select',
 			'size'              => 'wpbean-sb-select-buttons',
@@ -343,6 +343,15 @@ class WPBean_Accordion_Menu_Admin_Page
 			'desc'              => esc_html__('When expanding a new item, collapse the previously enlarged accordion.', 'wpb-accordion-menu-or-category'),
 			'type'              => 'checkbox',
 			'default'           => 'on',
+			'sanitize_callback' => 'sanitize_text_field',
+		);
+
+		$fields['wpbean_accordion_menu_accordion_settings'][] = array(
+			'name'              => 'wpb_wmca_keyboard_accessibility',
+			'checkbox_label'    => esc_html__('Yes Please!', 'wpb-accordion-menu-or-category'),
+			'label'             => esc_html__('Keyboard Accessibility', 'wpb-accordion-menu-or-category'),
+			'desc'              => esc_html__('Accordion keyboard accessibility support.', 'wpb-accordion-menu-or-category'),
+			'type'              => 'checkbox',
 			'sanitize_callback' => 'sanitize_text_field',
 		);
 

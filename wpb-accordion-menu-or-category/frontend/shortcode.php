@@ -40,14 +40,16 @@ class WPB_Accordion_Menu_ShortCode {
 			return;
 		}
 
-		$id          = $accordion_attrs['id'];
-		$data_socure = get_post_meta( $id, 'wpb_wmca_data_socure', true );
-		$skin 		 = get_post_meta( $id, 'wpb_wmca_accordion_skin', true );
+		$id          	= $accordion_attrs['id'];
+		$data_socure 	= get_post_meta( $id, 'wpb_wmca_data_socure', true );
+		$skin 		 	= get_post_meta( $id, 'wpb_wmca_accordion_skin', true );
+		$accessibility 	= get_post_meta( $id, 'wpb_wmca_keyboard_accessibility', true );
 
 		$wrapper_classes = array(
 			'wpb_category_n_menu_accordion',
 			'wpb_accordion_free_version',
-			'wpb_wmca_accordion_wrapper_theme_' . ($skin ? $skin : 'dark'),
+			'wpb_wmca_accordion_wrapper_theme_' . esc_attr($skin ? $skin : 'dark'),
+			'wpb_wmca_keyboard_accessibility_' . esc_attr('on' === $accessibility ? 'yes' : 'no')
 		);
 
 		if ( 'taxonomy' === $data_socure ) {
