@@ -1,13 +1,13 @@
-=== WPB Accordion Menu - Collapse Vertical Sidebar Menu - WooCommerce Category Accordion ===
+=== WPB Accordion Menu - Collapsible Vertical Sidebar Menu - WooCommerce Category Accordion ===
 Contributors: wpbean, imranwpb
 Tags: accordion menu, vertical menu, menu, woocommerce menu, sidebar menu
 Requires at least: 5.0
-Tested up to: 6.8.2
-Stable tag: 1.8.2
+Tested up to: 6.9
+Stable tag: 1.8.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-WPB Accordion Menu is a collapsable vertical sidebar menu for WordPress. It can display WooCommerce product categories accordion and menu accordion.
+WPB Accordion Menu is a collapsible vertical sidebar menu for WordPress. It can display WooCommerce product categories and the menu accordion.
 
 == Description ==
 
@@ -15,7 +15,10 @@ An <strong>accordion menu</strong> (also called <strong>sidebar menu</strong>) c
 
 If you're looking for a WordPress accordion menu, accordion categories or off canvas WordPress menu for your website, you've come to the right place. That’s exactly what the <strong>WPB Accordion Menu</strong> is built for.
 
-This accordion menu plugin is a game-changer for WordPress and WooCommerce sites. It provides you a sleek, responsive sidebar menu that organizes content beautifully. This WordPress accordion menu plugin is really handy for websites with lots of menus and submenus or a large number of categories and subcategories. 
+This accordion menu plugin is a powerful solution for WordPress and WooCommerce websites. It delivers a clean, responsive sidebar accordion menu that helps organize content in a structured and user-friendly way. Designed for sites with complex navigation, multiple menus, or a large number of categories and subcategories, this accordion menu improves usability while maintaining a modern, lightweight design.
+
+== 🚀 Trusted by 10,000+ WordPress Websites ==
+WPB Accordion Menu is actively used on over 10,000 WordPress sites to create fast, lightweight, and flexible accordion menus.
 
 == Quick Links ==
 
@@ -429,5 +432,11 @@ Our accordion menu can have as many levels as you'd like.
 
 = version 1.8.2 =
 * Fixed some spelling issue.
+
+= version 1.8.3 =
+* Tested with Plugin Check (PCP).
+
+= version 1.8.4 =
+* Added classic menu support.
 
 == Upgrade notice ==

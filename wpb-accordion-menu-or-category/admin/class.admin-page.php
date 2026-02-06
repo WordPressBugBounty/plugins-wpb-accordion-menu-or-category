@@ -436,7 +436,12 @@ class WPBean_Accordion_Menu_Admin_Page
 	 */
 	public function upgrade_to_pro()
 	{
-		wp_redirect('https://wpbean.com/downloads/wpb-accordion-menu-category-pro/');
+		add_filter('allowed_redirect_hosts', function ($hosts) {
+			$hosts[] = 'wpbean.com';
+			return $hosts;
+		});
+
+		wp_safe_redirect('https://wpbean.com/downloads/wpb-accordion-menu-category-pro/');
 		exit;
 	}
 
@@ -445,7 +450,12 @@ class WPBean_Accordion_Menu_Admin_Page
 	 */
 	public function get_help()
 	{
-		wp_redirect('https://wpbean.com/support/');
+		add_filter('allowed_redirect_hosts', function ($hosts) {
+			$hosts[] = 'wpbean.com';
+			return $hosts;
+		});
+
+		wp_safe_redirect('https://wpbean.com/support/');
 		exit;
 	}
 
@@ -630,6 +640,7 @@ class WPBean_Accordion_Menu_Admin_Page
 	 */
 	public function shortcodes_list_items()
 	{
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$paged = (! empty($_GET['paged'])) ? absint(wp_unslash($_GET['paged'])) : '';
 
 		$args = array(
@@ -650,6 +661,7 @@ class WPBean_Accordion_Menu_Admin_Page
 			$total_pages = $wp_query->max_num_pages;
 
 			if ($total_pages > 1) {
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo paginate_links(
 					array(
 						'base'         => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
@@ -1012,8 +1024,9 @@ class WPBean_Accordion_Menu_Admin_Page
 	{
 		check_ajax_referer('wpbean-accordion-menu-admin-page-nonce', '_wpb_am_save_meta_nonce'); // Verify the nonce.
 
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$forms_data      = isset($_POST['_wpb_am_forms_data']) ? array_map(array($this, 'wpbean_clean'), (array) wp_unslash($_POST['_wpb_am_forms_data'])) : array();
-		$shortcode_title = isset($_POST['_wpb_am_shortcode_title']) ? wp_unslash(sanitize_text_field($_POST['_wpb_am_shortcode_title'])) : '';
+		$shortcode_title = isset($_POST['_wpb_am_shortcode_title']) ? sanitize_text_field(wp_unslash($_POST['_wpb_am_shortcode_title'])) : '';
 
 		foreach ($forms_data as $form_data) {
 

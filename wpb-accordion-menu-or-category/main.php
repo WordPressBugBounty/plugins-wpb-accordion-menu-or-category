@@ -4,7 +4,7 @@
  * Plugin Name:       WPB Accordion Menu or Category
  * Plugin URI:        https://wpbean.com/downloads/wpb-accordion-menu-category-pro/
  * Description:       You may display the WordPress menu or any categories in a nice accordion with submenu and subcategory support by using the WPB Accordion Menu or Category Plugin. For WooCommerce websites, it can be really helpful.
- * Version:           1.8.2
+ * Version:           1.8.4
  * Author:            WPBean
  * Author URI:        https://wpbean.com/
  * License:           GPL-2.0+
@@ -29,7 +29,7 @@ final class WpBean_Accordion_Menu
 	 *
 	 * @var string
 	 */
-	public $version = '1.8.2';
+	public $version = '1.8.4';
 
 	/**
 	 * Instance
@@ -96,9 +96,9 @@ final class WpBean_Accordion_Menu
 	{
 		$this->include_files();
 		$this->init_classes();
-		add_action('init', array($this, 'localization_setup'));
 		add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
 		add_filter('plugin_action_links_' . plugin_basename(__FILE__), array($this, 'plugin_action_links'));
+		add_action('after_setup_theme', array($this, 'classic_menu_support'));
 	}
 
 	/**
@@ -128,8 +128,6 @@ final class WpBean_Accordion_Menu
 			require_once __DIR__ . '/admin/shortcodebuilder/class.shortcode-meta.php';
 			require_once __DIR__ . '/admin/class.admin-page.php';
 			require_once __DIR__ . '/admin/class.discount-notice.php';
-
-			require_once __DIR__ . '/inc/AvailableHire/AvailableHire.php';
 		}
 	}
 
@@ -147,25 +145,12 @@ final class WpBean_Accordion_Menu
 			new WPBean_Accordion_ShortCode_CPT();
 			new WPBean_Accordion_ShortCode_Meta();
 			new WPBean_Accordion_Menu_Admin_Page();
-
-			// Adding for showing the discount page.
-			//new WpBean_AccordionMenu_AvailableHire();
 		}
 		if (did_action('elementor/loaded')) {
 			WPBean_Accordion_Menu_Elementor::instance();
 		}
 		WPBean_Accordion_Menu_Block::instance();
 		new WPB_WCMA_WooCommerce();
-	}
-
-	/**
-	 * Initialize plugin for localization.
-	 *
-	 * @return void
-	 */
-	public function localization_setup()
-	{
-		load_plugin_textdomain('wpb-accordion-menu-or-category', false, dirname(plugin_basename(__FILE__)) . '/languages/');
 	}
 
 	/**
@@ -198,6 +183,15 @@ final class WpBean_Accordion_Menu
 		$links[] = '<a href="https://wpbean.com/downloads/wpb-accordion-menu-category-pro/?utm_content=WPB+Accordion+Menu+Pro&utm_campaign=adminlink&utm_medium=action-link&utm_source=FreeVersion" target="_blank" style="color: #39b54a; font-weight: 700;">' . esc_html__('Go Pro', 'wpb-accordion-menu-or-category') . '</a>';
 
 		return $links;
+	}
+
+	/**
+	 * Add classic navigation menu support if needed.
+	 *
+	 * @return void
+	 */
+	public function classic_menu_support() {
+	    add_theme_support('menus');
 	}
 
 	/**
