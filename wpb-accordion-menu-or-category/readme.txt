@@ -2,12 +2,12 @@
 Contributors: wpbean, imranwpb
 Tags: accordion menu, vertical menu, menu, woocommerce menu, sidebar menu
 Requires at least: 5.0
-Tested up to: 6.9.1
+Tested up to: 6.9.4
 Stable tag: 1.8.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-WPB Accordion Menu is a collapsible vertical sidebar menu for WordPress. It can display WooCommerce product categories and the menu accordion.
+Collapsible accordion sidebar menu for WordPress. Display WooCommerce product categories and navigation menus with ease.
 
 == Description ==
 
