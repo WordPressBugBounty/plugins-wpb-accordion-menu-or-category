@@ -16,8 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function wpb_wamc_get_template( $template_name, $args = array() ) {
 	$template = locate_template(
 		array(
-			WPB_WAMC_THEME_DIR_PATH . $template_name,
-			$template_name,
+			WPB_WAMC_THEME_DIR_PATH . $template_name
 		),
 		false,
 		true,

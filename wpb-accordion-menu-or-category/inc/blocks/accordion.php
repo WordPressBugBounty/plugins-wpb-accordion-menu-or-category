@@ -65,12 +65,7 @@ class WPBean_Accordion_Menu_Block {
 			'wpb-accordion-menu-or-category' // text-domain.
 		);
 
-		register_block_type(
-			'wpb-accordion-menu-or-category-pro/wpb-wmca-shortcode-selector',
-			array(
-				'editor_script' => 'wpb-wmca-accordion-block',
-			)
-		);
+		register_block_type( __DIR__ );
 
 		$shortcode_items = array_map(
 			function ( $post ) {

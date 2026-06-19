@@ -1,0 +1,30 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "wpb-accordion-menu-or-category-pro/wpb-wmca-shortcode-selector",
+    "version": "1.0.0",
+    "title": "WPB Accordion Menu",
+    "description": "Display an accordion menu or category list using WPB Accordion.",
+    "category": "widgets",
+    "icon": "list-view",
+    "keywords": [
+        "accordion",
+        "category",
+        "menu",
+        "posts",
+        "products",
+        "accordion menu",
+        "list",
+        "taxonomy"
+    ],
+    "textdomain": "wpb-accordion-menu-or-category",
+    "editorScript": "wpb-wmca-accordion-block",
+    "attributes": {
+        "id": {
+            "type": "integer"
+        },
+        "title": {
+            "type": "string"
+        }
+    }
+}

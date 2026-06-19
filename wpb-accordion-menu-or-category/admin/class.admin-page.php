@@ -43,6 +43,7 @@ class WPBean_Accordion_Menu_Admin_Page
 			add_action('wp_ajax_wpb_am_fire_save_shortcode', array($this, 'save_shortcodes_meta'));
 		}
 		add_filter('admin_footer_text', array($this, 'admin_footer_text'));
+		add_action('admin_head', array($this, 'upgrade_submenu_styles'));
 	}
 
 	/**
@@ -407,22 +408,22 @@ class WPBean_Accordion_Menu_Admin_Page
 		// Add upgrade to pro submenu page.
 		add_submenu_page(
 			'wpb_wmca_shortcodes-items',
-			esc_html('Upgrade to Pro'),
-			esc_html('Upgrade to Pro'),
+			esc_html('Get Help'),
+			esc_html('Get Help'),
 			apply_filters('shortcodes_list_page_capability', 'manage_options'),
-			'wpb_wmca_upgrade-to-pro',
-			array($this, 'upgrade_to_pro'),
+			'wpb_wmca_get_help',
+			array($this, 'get_help'),
 			apply_filters('wpbean_accordion_menu_admin_page_position', 30),
 		);
 
 		// Add upgrade to pro submenu page.
 		add_submenu_page(
 			'wpb_wmca_shortcodes-items',
-			esc_html('Get Help'),
-			esc_html('Get Help'),
+			esc_html('Upgrade to Pro'),
+			esc_html('Upgrade to Pro'),
 			apply_filters('shortcodes_list_page_capability', 'manage_options'),
-			'wpb_wmca_get_help',
-			array($this, 'get_help'),
+			'wpb_wmca_upgrade-to-pro',
+			array($this, 'upgrade_to_pro'),
 			apply_filters('wpbean_accordion_menu_admin_page_position', 30),
 		);
 
@@ -509,6 +510,12 @@ class WPBean_Accordion_Menu_Admin_Page
 						<span class="wpb-sb-label"><?php echo esc_html__('Version', 'wpb-accordion-menu-or-category'); ?></span>
 						<span class="wpb-sb-text"><?php echo esc_html(WPB_WAMC_FREE_VERSION); ?></span>
 					</span>
+					<a target="_blank" href="https://wpbean.com/downloads/wpb-accordion-menu-category-pro/?utm_content=WPB+Accordion+Menu+Pro&utm_campaign=adminlink&utm_medium=plugin-header&utm_source=FreeVersion" class="wpb-sb-upgrade-to-pro-btn">
+						<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+							<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+						</svg>
+						<?php echo esc_html__('Upgrade to Pro', 'wpb-accordion-menu-or-category'); ?>
+					</a>
 				</div>
 			</div>
 			<div class="wpb-sb-list-content">
@@ -1070,6 +1077,59 @@ class WPBean_Accordion_Menu_Admin_Page
 		}
 
 		wp_send_json_success(esc_html__('Saved Successfully!', 'wpb-accordion-menu-or-category'));
+	}
+
+	/**
+	 * Highlight the Upgrade to Pro submenu item in the admin menu.
+	 *
+	 * @return void
+	 */
+	public function upgrade_submenu_styles()
+	{
+?>
+	<style>
+		#adminmenu a[href="admin.php?page=wpb_wmca_upgrade-to-pro"] {
+			color: #f0a500 !important;
+			font-weight: 600 !important;
+		}
+
+		#adminmenu a[href="admin.php?page=wpb_wmca_upgrade-to-pro"]:hover {
+			color: #ffb900 !important;
+		}
+
+		#adminmenu a[href="admin.php?page=wpb_wmca_upgrade-to-pro"]::before {
+			content: "\2605";
+			margin-right: 4px;
+			font-size: 11px;
+		}
+
+		.wpb-sb-upgrade-to-pro-btn {
+			display: inline-flex;
+			align-items: center;
+			gap: 5px;
+			padding: 5px 14px;
+			background: linear-gradient(135deg, #f0a500, #e08c00);
+			color: #fff !important;
+			font-size: 12px;
+			font-weight: 600;
+			line-height: 1.5;
+			border-radius: 4px;
+			text-decoration: none;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+			transition: background 0.2s ease, box-shadow 0.2s ease;
+		}
+
+		.wpb-sb-upgrade-to-pro-btn:hover {
+			background: linear-gradient(135deg, #ffb900, #f0a500);
+			color: #fff !important;
+			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+		}
+
+		.wpb-sb-upgrade-to-pro-btn svg {
+			flex-shrink: 0;
+		}
+	</style>
+<?php
 	}
 
 	/**
